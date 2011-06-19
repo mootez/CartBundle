@@ -14,15 +14,15 @@ class ProduitsController extends Controller
 	/**
 	 * 
 	 * 
-	 * @Route("/liste-des-Produits/{page}", name="list_prod", defaults={"page"=1})
+	 * @Route("/liste-des-Produits/{page}", name="list_prod", defaults={"page" = 1})
 	 * @Template()
 	 * Enter description here ...
 	 */
-	public function listAction($page)
+	public function listAction($page=1)
 	{
 		 $em = $this->get('doctrine')->getEntityManager();
 		 
-		 $query = $em->createQuery("select u, v from CSF\CartBundle\Entity\Products u left join u.productType v where u.productType = v.id");
+		 $query = $em->createQuery("select u from CSF\CartBundle\Entity\Products u");
 		 $result = clone $query;
 		 $result = $result->getResult();	
 		 $adapter = $this->get('knplabs_paginator.adapter');		 
@@ -31,7 +31,7 @@ class ProduitsController extends Controller
 	
 		 $paginator = new Paginator($adapter);
 		 $paginator->setCurrentPageNumber($page);
-		 $paginator->setItemCountPerPage(10);
+		 $paginator->setItemCountPerPage(1);
 		 $paginator->setPageRange(6);
 		 
 			 

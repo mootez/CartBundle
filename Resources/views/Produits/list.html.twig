@@ -2,11 +2,6 @@
 
 {% block produits %}
 Liste produits!
-{% for it in res %}
-{{ it }}
-{% endfor %}
-
-
 {% if paginator|length == 0 %}
 <p>Aucuns résultats !</p>
 
@@ -26,13 +21,6 @@ Liste produits!
     <td>{{ item.prix }} €</td>
     <td>{{ item.description }}</td>
     <td>{{ item.productType.name }}</td>
-</tr>
-{% else %}
-<tr>
-<td>rien</td>
-<td>rien</td>
-<td>rien</td>
-<td>rien</td>
 </tr>
 {% endfor %}
 </table>
